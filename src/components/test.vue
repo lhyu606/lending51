@@ -10,8 +10,8 @@
 </template>
 
 <style lang="scss">
-    $width:100px;
-    $height:200px;
+    $width: 100px;
+    $height: 200px;
     .div {
         width: $width;
         height: $height;

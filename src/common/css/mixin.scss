@@ -1,0 +1,58 @@
+@mixin border-1px(){
+    position:relative;
+     &:after{
+        display:block;
+        position:absolute;
+        width:100%;
+        content:' ';
+    }
+}
+
+//定义边框样式
+.border-1px{
+    @include border-1px();
+}
+
+//媒体查询
+@media (-webkit-min-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5){
+    .border-1px{
+       &::after{
+        -webkit-transform:scaleY(0.7);
+        transform:scaleY(0.7);
+       }
+  }
+}
+
+//-webkit-min-device-pixel-ratio 有多个值，可以根据项目需求定义更多的值来适配不同的机型，详细请查看本文最后的参考
+@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2){
+    .border-1px{
+      &::after{
+        -webkit-transform:scaleY(0.5);
+        transform:scaleY(0.5);
+      }
+  }
+}
+.border-top{
+    &:after{
+        top: 0;
+        left: 0;
+        border-top:1px solid #44525d;
+    }
+}
+.border-bottom{
+    &:after{
+        bottom: 0;
+        left: 0;
+        border-top:1px solid #dfdfdf;
+    }
+}
+.border-right{
+    &:after{
+        height: 50px;
+        top: -11px;
+        right: 0;
+        border-right:1px solid #44525d;
+    }
+}
+
+

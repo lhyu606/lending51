@@ -12,6 +12,7 @@
   "dependencies": {
     "eslint": "^4.19.0",
     "px2rem-loader": "^0.1.8",
+    "swiper": "^4.2.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
