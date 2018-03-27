@@ -1,10 +1,14 @@
 <template>
-    <div class="swiper-container2">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="str in listImg">{{ str }}</div>
+    <div class="announce-box">
+        <div class="ann-title">公告：</div>
+        <div class="swiper-container2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="str in listImg">{{ str }}</div>
+            </div>
+            <div class="swiper-pagination swiper-pagination-white"></div>
         </div>
-        <div class="swiper-pagination swiper-pagination-white"></div>
     </div>
+
 </template>
 <script>
     import Swiper from 'swiper';
@@ -13,7 +17,7 @@
         data() {
             return {
                 listImg: [
-                    '公告：建设银行系统维修 1', '公告：建设银行系统维修 2', '公告：建设银行系统维修 3'
+                    '建设银行系统维修 1', '建设银行系统维修 2', '建设银行系统维修 3'
                 ]
             }
         },
@@ -34,11 +38,24 @@
     }
 </script>
 <style lang="scss" scoped>
+    .announce-box {
+        width: 100%;
+        position: relative;
+        .ann-title {
+            position: absolute;
+            width: 98px;
+            height: 50px;
+            padding-left: 25px;
+            line-height: 54px;
+            color: #6f798a;
+        }
+    }
+
     .swiper-container2 {
         width: 100%;
         height: 48px;
         margin: 2px 0;
-        padding: 0 25px;
+        padding: 0 25px 0 90px;
         background: #ffffff;
         overflow: hidden;
         line-height: 50px;
@@ -66,5 +83,4 @@
             background: #7c5e53;
         }
     }
-    
 </style>

@@ -67,8 +67,8 @@
     }
 
     .tab-icon {
-        height: 65px;
-        padding-top: 15px;
+        height: 60px;
+        padding-top: 12px;
         line-height: 45px;
     }
 
