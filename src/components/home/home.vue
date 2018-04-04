@@ -27,11 +27,11 @@
         <transition name="modal-fade">
             <modal v-show="msgShow" :modalFlag="'msg'" v-on:closeModal="_closeModal">
                 <div slot="title" class="modal-title">
-                     订阅短信通知
+                    订阅短信通知
                 </div>
                 <div slot="content" class="modal-content">
                     <span class="border-1px border-bottom dis-inline-block mt50">
-                        <input type="text" placeholder="填写您的手机号" class=" input" v-model.trim="msgContent">
+                        <input type="text" placeholder="填写您的手机号" class=" input" v-model.trim="mobileph">
                     </span>
                     <div class="madol-button-box">
                         <span class="dis-inline-block mt50 width-full">
@@ -61,6 +61,11 @@
         </transition>
         <!-- 项目回款公告 -->
         <div class="bottom-height"></div>
+        <!-- 订阅成功通知 -->
+        <transition name="alert-fade">
+            <callbackAlert :alertContent='alertContent' v-show="showAlert"></callbackAlert>
+        </transition>
+
     </div>
 </template>
 <script>
@@ -71,6 +76,7 @@
     import funWraper from '@/components/funWraper/funWraper'
     import platWraper from '@/components/platWraper/platWraper'
     import modal from '@/components/modal/modal'
+    import callbackAlert from '@/components/callbackAlert/callbackAlert'
     export default {
         data() {
             return {
@@ -79,7 +85,9 @@
                 wxShow: false,
                 msgShow: false,
                 ancShow: false,
-                msgContent: ''
+                mobileph: '',
+                showAlert: false,
+                alertContent: ''
             }
         },
         methods: {
@@ -103,8 +111,15 @@
                     this.ancShow = false;
                 }
             },
-            getMsg(){
-                console.log(this.msgContent);
+            getMsg() {
+                this.msgShow = false;
+                this.$store.dispatch('subscribeMsg', this.mobileph).then((callbackMsg) => {
+                    this.alertContent = callbackMsg;
+                    this.showAlert = true;
+                    setTimeout(() => {
+                        this.showAlert = false;
+                    }, 2000);
+                })
             }
         },
         components: {
@@ -114,7 +129,8 @@
             split,
             funWraper,
             platWraper,
-            modal
+            modal,
+            callbackAlert
         }
     }
 </script>
@@ -171,6 +187,18 @@
 
     .modal-fade-enter,
     .modal-fade-leave-to {
+        opacity: 0;
+    }
+     .alert-fade-enter-active {
+        transition: all .1s ease-in;
+    }
+
+    .alert-fade-leave-active {
+        transition: all .5s ease-out;
+    }
+
+    .alert-fade-enter,
+    .alert-fade-leave-to {
         opacity: 0;
     }
 </style>

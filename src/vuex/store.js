@@ -20,6 +20,15 @@ const mutations = {
 const actions = {
     toggleActive({ commit }) {
         commit('_toggleActive')
+    },
+    subscribeMsg({ commit }, mobileph) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('成功向服务器添加订阅电话：' + mobileph);
+                resolve('订阅成功');
+            }, 1000)
+        })
+       
     }
 }
 
