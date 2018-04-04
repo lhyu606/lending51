@@ -14,16 +14,19 @@ export default new Router({
     name: 'HelloWorld',
     component: HelloWorld
   }, {
+    path: '/',
+     redirect: { name: 'Home' }
+  }, {
     path: '/home',
     name: 'Home',
-      component: Home
-    }, {
-      path: '/invm',
-      name: 'Invm',
-      component: Invm
-    }, {
-      path: '/user',
-      name: 'User',
-      component: User
-    }]
+    component: Home
+  }, {
+    path: '/invm',
+    name: 'Invm',
+    component: Invm
+  }, {
+    path: '/user',
+    name: 'User',
+    component: User
+  }]
 })

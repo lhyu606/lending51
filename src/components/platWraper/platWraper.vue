@@ -10,11 +10,11 @@
                         {{ item.charac }}
                     </div>
                 </transition>
-                <transition name="fade" mode="out-in" appear></transition>
-                <div class="plat-item-desc">
-                    <p class="income">{{ item.childTitle }} </p>
-                    <p class="instruct">{{ item.childDesc }}</p>
-                </div>
+                <transition name="fade" mode="out-in" appear>
+                    <div class="plat-item-desc">
+                        <p class="income">{{ item.childTitle }} </p>
+                        <p class="instruct">{{ item.childDesc }}</p>
+                    </div>
                 </transition>
             </div>
             <split></split>
@@ -158,5 +158,18 @@
         line-height: 30px;
         font-size: 18px;
         color: #4d4e53;
+    }
+
+    .modal-fade-enter-active {
+        transition: all .3s ease-in;
+    }
+
+    .modal-fade-leave-active {
+        transition: all .5s ease-out;
+    }
+
+    .modal-fade-enter,
+    .modal-fade-leave-to {
+        opacity: 0;
     }
 </style>

@@ -22,7 +22,6 @@
             }
         },
         mounted() {
-            console.log('mounted', this)
             var swiper2 = new Swiper('.swiper-container2', {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,

@@ -59,3 +59,39 @@
 .bottom-height{
     height: 96px;
 }
+
+.input{
+    outline: none;
+    border: none;
+    height: 75px;
+    line-height: 75px;
+    color: #999999;
+    text-align: center;
+    height: 60px;
+}
+.dis-inline-block{
+    display: inline-block;
+}
+.mt20{
+    margin-top: 20px;
+}
+.mt50{
+    margin-top: 50px;
+}
+.button-confirm{
+    outline: none;
+    border: none;
+    height: 60px;
+    line-height: 60px;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 30px;
+    width: 100%;
+    font-size: 28px;
+}
+.reg-gradient{
+   background: linear-gradient(to right, #65b1ff, #5490ff);
+}
+.width-full{
+    width: 100%;
+}

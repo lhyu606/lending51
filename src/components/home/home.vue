@@ -11,14 +11,55 @@
                 <a href="#">注册</a>
             </div>
         </div>
+        <!-- 轮播图 -->
         <carousel></carousel>
+        <!-- 公告 -->
         <announce></announce>
         <split></split>
-        <funWraper></funWraper>
+        <!-- 订阅短信 -->
+        <funWraper v-on:showModal="_showModal"></funWraper>
         <split></split>
+        <!-- 平台产品、安全保障 -->
         <platWraper></platWraper>
         <mainTab :tabName="tabName"></mainTab>
         <split></split>
+        <!-- 订阅短信通知 -->
+        <transition name="modal-fade">
+            <modal v-show="msgShow" :modalFlag="'msg'" v-on:closeModal="_closeModal">
+                <div slot="title" class="modal-title">
+                     订阅短信通知
+                </div>
+                <div slot="content" class="modal-content">
+                    <span class="border-1px border-bottom dis-inline-block mt50">
+                        <input type="text" placeholder="填写您的手机号" class=" input" v-model.trim="msgContent">
+                    </span>
+                    <div class="madol-button-box">
+                        <span class="dis-inline-block mt50 width-full">
+                            <input type="submit" class="reg-gradient input button-confirm" value="确定" @click="getMsg">
+                        </span>
+                    </div>
+                </div>
+            </modal>
+        </transition>
+        <!-- 添加微信客服 -->
+        <transition name="modal-fade">
+            <modal v-show="wxShow" :modalFlag="'wx'" v-on:closeModal="_closeModal('wx')">
+                <div slot="title" class="modal-title">
+                    添加微信客服
+                </div>
+                <div slot="content" class="modal-content">
+                    <span class="border-1px border-bottom dis-inline-block mt50">
+                        <input type="text" placeholder="填写您的微信号" class=" input">
+                    </span>
+                    <div class="madol-button-box">
+                        <span class="dis-inline-block mt50 width-full">
+                            <input type="submit" class="reg-gradient input button-confirm" value="确定">
+                        </span>
+                    </div>
+                </div>
+            </modal>
+        </transition>
+        <!-- 项目回款公告 -->
         <div class="bottom-height"></div>
     </div>
 </template>
@@ -29,19 +70,41 @@
     import split from '@/components/split/split'
     import funWraper from '@/components/funWraper/funWraper'
     import platWraper from '@/components/platWraper/platWraper'
+    import modal from '@/components/modal/modal'
     export default {
         data() {
             return {
                 tabName: 'home',
-                logIn: true
+                logIn: true,
+                wxShow: false,
+                msgShow: false,
+                ancShow: false,
+                msgContent: ''
             }
         },
         methods: {
-            chageTab() {
-                console.log(5);
+            _showModal(key) {
+                console.log(key);
+                if (key == 'wx') {
+                    this.wxShow = true;
+                } else if (key == 'msg') {
+                    this.msgShow = true;
+                } else if (key == 'anc') {
+                    this.ancShow = true;
+                }
             },
-            gg() {
-                console.log('去投资....')
+            _closeModal(key) {
+                console.log(key);
+                if (key == 'wx') {
+                    this.wxShow = false;
+                } else if (key == 'msg') {
+                    this.msgShow = false;
+                } else if (key == 'anc') {
+                    this.ancShow = false;
+                }
+            },
+            getMsg(){
+                console.log(this.msgContent);
             }
         },
         components: {
@@ -50,7 +113,8 @@
             announce,
             split,
             funWraper,
-            platWraper
+            platWraper,
+            modal
         }
     }
 </script>
@@ -95,8 +159,18 @@
         margin: 20px 0px 15px;
         padding: 0 5px;
         height: 22px;
-        /* &:first-child{
-            border-right: 1px solid #44525d;
-        } */
+    }
+
+    .modal-fade-enter-active {
+        transition: all .3s ease-in;
+    }
+
+    .modal-fade-leave-active {
+        transition: all .5s ease-out;
+    }
+
+    .modal-fade-enter,
+    .modal-fade-leave-to {
+        opacity: 0;
     }
 </style>
